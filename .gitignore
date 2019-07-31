@@ -9,7 +9,7 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-test-tools/*
+#test-tools/*
 .expo-shared/*
 assets/*
 .watchmanconfig

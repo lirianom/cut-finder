@@ -1,0 +1,36 @@
+{
+    "login" : {
+          "username" : "admin",
+          "password" : "admin"
+    },
+  
+    "List" : {
+        "People" : [
+            {
+                "FirstName" : "Tamarcus",
+                "MiddleName" : "Antonio",
+                "LastName" : "Garcia"
+            },
+            {
+                "FirstName" : "Fabio",
+                "MiddleName" : "",
+                "LastName" : "Francois"
+            },
+            {
+                "FirstName" : "Martin",
+                "MiddleName" : "",
+                "LastName" : "Liriano"
+            },
+            {
+                "FirstName" : "Earnest",
+                "MiddleName" : "Torrien",
+                "LastName" : "Davis"
+            },
+            {
+                "FirstName" : "Anirudh",
+                "MiddleName" : "",
+                "LastName" : "Pillutla"
+            }
+        ]
+    }
+  }
