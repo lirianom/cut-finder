@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, TextInput, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native';
 const services = require('../processes/services');
 //import loginservices from '../processes/login-services';
 
@@ -32,6 +32,11 @@ class login extends Component {
   render() {
     return (
       <View style = {styles.container}>
+        <Image
+          style = {styles.logoImage}
+          source = {{ uri: 'https://cut-finder.s3.amazonaws.com/CutFinderLogo.PNG' }}
+          resizeMode = "contain"
+        />
         <TextInput style = {styles.inputContainer}
                     placeholder = "Username"
                     onChangeText = {(username) => this.setState({username})}/>
@@ -69,6 +74,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logoImage: {
+    width: 200,
+    height: 200,
   },
 });
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, StyleSheet, Image } from 'react-native';
+import { Text, View, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
 import {List, ListItem } from 'react-native-elements'
 const services = require('../processes/services');
-//import loginservices from '../processes/login-services';
+// import loginservices from '../processes/login-services';
+
 
 class home extends Component {
   constructor(props) {
@@ -25,14 +26,41 @@ class home extends Component {
     var query = services.data.login(this.state.search);
   }
 
+
   render() {
-    return (
+    return(
       <View  style = {styles.container}>
-        <Text style = {{marginLeft : 10 }}>{this.props.navigation.getParam('name')}</Text>
-        <Text>{this.state.results.Name}</Text>
-        <Image
-            style = {{ width : 300, height : 300 }} 
-            source = {require('../test-tools/img/ani.jpg')} />
+        <View style = {styles.upperRow}>
+          <Image
+            style = {styles.logoImage}
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/barberIcon.png' }}
+            resizeMode = "contain"
+          />
+          <Text style = {styles.barberName}>{this.state.results.FullName}</Text>
+          <Image
+            style = {styles.barberImage}
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/iceCubeBarber.jpg' }}
+          />
+        </View>
+        <Text style = {styles.barberDisplay}>{this.state.results.Location}</Text>
+        <Text style = {styles.barberDisplay}>{this.state.results.Salon}</Text>
+        <Text style = {styles.barberDisplay}>Portfolio:</Text>
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <Image
+            style = {styles.portfolioPic}
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1507.jpg' }}
+          />
+          <Image
+            style = {styles.portfolioPic}
+            resizeMode = "contain"
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1613.jpg' }}
+          />
+          <Image
+            style = {styles.portfolioPic}
+            resizeMode = "contain"
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1592.jpg' }}
+          />
+        </ScrollView>
       </View>
     );
   }
@@ -55,9 +83,47 @@ const styles = StyleSheet.create({
     width : 100
   },
   container: {
-    flex: 1,
-    backgroundColor : '#ffffff',
-    padding : 10
+    display: "flex",
+    marginBottom: 20,
+    borderBottomColor: "#e5e5e5",
+    borderBottomWidth: 3,
+    padding: 20
+  },
+  contentContainer: {
+    paddingBottom: 50,
+    paddingTop: 55
+  },
+  upperRow: {
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 5
+  },
+  barberName: {
+    marginTop: 30,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  barberDisplay: {
+    marginTop: 10,
+    marginLeft: 1,
+    marginRight: 5,
+    fontWeight: "bold",
+  },
+  logoImage: {
+    width: 100,
+    height: 100,
+    marginLeft: -25,
+  },
+  barberImage: {
+    width: 100,
+    height: 100,
+    marginLeft: "auto",
+  },
+  portfolioPic: {
+    flex:1,
+    height: 250,
+    width: "auto"
   },
 });
 
