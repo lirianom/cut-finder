@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native';
+import { Text, View, TextInput, StyleSheet, TouchableOpacity, Alert, Image, KeyboardAvoidingView } from 'react-native';
 const services = require('../processes/services');
 //import loginservices from '../processes/login-services';
 
@@ -13,7 +13,7 @@ class login extends Component {
     var pass = services.data.login(this.state.username, this.state.password);
     const { navigate } = this.props.navigation;
     if (pass) {
-      this.props.navigation.navigate('Home', {
+      this.props.navigation.navigate('AllBarbers', {
           name : 'Fabio Francois',
       });
     }
@@ -31,7 +31,7 @@ class login extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
+      <KeyboardAvoidingView style = {styles.container} behavior="padding">
         <Image
           style = {styles.logoImage}
           source = {{ uri: 'https://cut-finder.s3.amazonaws.com/CutFinderLogo.PNG' }}
@@ -48,7 +48,7 @@ class login extends Component {
                 style = {styles.buttonContainer}>
             <Text>Login</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'ivory',
     alignItems: 'center',
     justifyContent: 'center',
   },

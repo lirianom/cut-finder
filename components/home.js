@@ -12,6 +12,8 @@ class home extends Component {
   }
 
   async componentDidMount() {
+    var barberID = this.props.navigation.getParam('name');
+    console.log(barberID);
     var results = await services.data.getBarber();
     var barbers = services.data.getAllBarbers();
     this.setState(
@@ -48,7 +50,8 @@ class home extends Component {
         <ScrollView contentContainerStyle={styles.contentContainer}>
           <Image
             style = {styles.portfolioPic}
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1507.jpg' }}
+            resizeMode = "contain"
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1592.jpg' }}
           />
           <Image
             style = {styles.portfolioPic}
@@ -57,8 +60,7 @@ class home extends Component {
           />
           <Image
             style = {styles.portfolioPic}
-            resizeMode = "contain"
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1592.jpg' }}
+            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1507.jpg' }}
           />
         </ScrollView>
       </View>
@@ -83,6 +85,7 @@ const styles = StyleSheet.create({
     width : 100
   },
   container: {
+    backgroundColor: "skyblue",
     display: "flex",
     marginBottom: 20,
     borderBottomColor: "#e5e5e5",
@@ -116,8 +119,8 @@ const styles = StyleSheet.create({
     marginLeft: -25,
   },
   barberImage: {
-    width: 100,
-    height: 100,
+    width: 125,
+    height: 125,
     marginLeft: "auto",
   },
   portfolioPic: {
