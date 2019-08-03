@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native'
 
 
 const Barber = ({inputText, location, salon, uri, onPress}) => {
-  console.log("Hello from inside home class");
   return (
     <TouchableHighlight onPress = {onPress}>
       <View style = {container}>

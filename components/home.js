@@ -12,9 +12,9 @@ class home extends Component {
   }
 
   async componentDidMount() {
-    var barberID = this.props.navigation.getParam('name');
-    console.log(barberID);
-    var results = await services.data.getBarber();
+    var barberId = this.props.navigation.getParam('id');
+    console.log(barberId);
+    var results = await services.data.getBarber(barberId);
     var barbers = services.data.getAllBarbers();
     this.setState(
         {
@@ -41,7 +41,7 @@ class home extends Component {
           <Text style = {styles.barberName}>{this.state.results.FullName}</Text>
           <Image
             style = {styles.barberImage}
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/iceCubeBarber.jpg' }}
+            source = {{ uri: this.state.results.BarberImage }}
           />
         </View>
         <Text style = {styles.barberDisplay}>{this.state.results.Location}</Text>
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   barberName: {
+    flex: 1,
     marginTop: 30,
     textAlign: "center",
     fontSize: 20,

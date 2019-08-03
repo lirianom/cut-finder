@@ -7,18 +7,21 @@ barberList = [
     name: "Ice Cube",
     location: "Raleigh",
     salon: "The Guy's Place on Creedmoor",
+    id: 'Barber1',
     uri: { uri: 'https://cut-finder.s3.amazonaws.com/iceCubeBarber.jpg' }
   },
   {
     name: "Sweeney Todd",
     location: "London",
     salon: "Fleet Street Salon",
+    id: 'Barber2',
     uri: { uri: 'https://cut-finder.s3.amazonaws.com/sweeneytodd.jpg' }
   },
   {
     name: "Vegeta, Prince of all Saiyans",
     location: "Planet Vegeta",
     salon: "Not a Fucking Barber",
+    id: 'Barber3',
     uri: { uri: 'https://cut-finder.s3.amazonaws.com/vegeta-prince-vegeta-30750256-498-373.jpg' }
   },
 ]
@@ -36,13 +39,14 @@ barberList = [
 class allBarbersScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = { barberID: ''}
   }
 
   selectBarber() {
     const { navigate } = this.props.navigation;
     if (true) {
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('Home',{barberID:barber.id});
+      // this.setState()
     }
   }
 
@@ -54,7 +58,11 @@ class allBarbersScreen extends Component {
         location = {barber.location}
         salon = {barber.salon}
         uri = {barber.uri}
-        onPress = {this.selectBarber.bind(this)}
+        onPress = {(event) => {
+                            // onPress event fires with an event object
+                            const { navigate } = this.props.navigation;
+                            navigate('Home', { id: barber.id });
+                        }}
       />
     });
   }
