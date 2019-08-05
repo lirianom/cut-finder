@@ -6,7 +6,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const AppNavigator = createStackNavigator({
-  // Login : {screen : LoginScreen},
+  Login : {screen : LoginScreen},
   AllBarbers : {screen : allBarbersScreen},
   Home : {screen : HomeScreen},
 });

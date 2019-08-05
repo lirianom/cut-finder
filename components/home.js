@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Text, View, TextInput, StyleSheet, Image, ScrollView } from 'react-native';
 import {List, ListItem } from 'react-native-elements'
 const services = require('../processes/services');
 // import loginservices from '../processes/login-services';
+import Portfolio from './portfolio';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 class home extends Component {
   constructor(props) {
     super(props);
-    this.state = { search : '', results : '', barbers : [] }
+    this.state = { isLoaded: false, search : '', results : '', barbers : [], Portfolio: [''] }
   }
 
   async componentDidMount() {
     var barberId = this.props.navigation.getParam('id');
-    console.log(barberId);
     var results = await services.data.getBarber(barberId);
+    var Portfolio = results.Portfolio;
     var barbers = services.data.getAllBarbers();
+    var isLoaded = true;
     this.setState(
         {
+            isLoaded,
+            Portfolio,
             results,
             barbers
         }
@@ -28,43 +34,42 @@ class home extends Component {
     var query = services.data.login(this.state.search);
   }
 
+  createPortfolioMap() {
+  }
+
 
   render() {
-    return(
-      <View  style = {styles.container}>
-        <View style = {styles.upperRow}>
-          <Image
-            style = {styles.logoImage}
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/barberIcon.png' }}
-            resizeMode = "contain"
-          />
-          <Text style = {styles.barberName}>{this.state.results.FullName}</Text>
-          <Image
-            style = {styles.barberImage}
-            source = {{ uri: this.state.results.BarberImage }}
-          />
+    if (this.state.isLoaded == false){
+      return(
+        <Spinner
+          visible = {!this.state.isLoaded}
+          textContent={"loading..."}
+          textStyle={{color: '#253145'}}
+          animation="fade"
+        />
+      )
+    } else {
+      return(
+        <View  style = {styles.container}>
+          <View style = {styles.upperRow}>
+            <Image
+              style = {styles.logoImage}
+              source = {{ uri: 'https://cut-finder.s3.amazonaws.com/barberIcon.png' }}
+              resizeMode = "contain"
+            />
+            <Text style = {styles.barberName}>{this.state.results.FullName}</Text>
+            <Image
+              style = {styles.barberImage}
+              source = {{ uri: this.state.results.BarberImage }}
+            />
+          </View>
+          <Text style = {styles.barberDisplay}>{this.state.results.Location}</Text>
+          <Text style = {styles.barberDisplay}>{this.state.results.Salon}</Text>
+          <Text style = {styles.barberDisplay}>Portfolio:</Text>
+          <Portfolio uriArray = {this.state.Portfolio}/>
         </View>
-        <Text style = {styles.barberDisplay}>{this.state.results.Location}</Text>
-        <Text style = {styles.barberDisplay}>{this.state.results.Salon}</Text>
-        <Text style = {styles.barberDisplay}>Portfolio:</Text>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Image
-            style = {styles.portfolioPic}
-            resizeMode = "contain"
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1592.jpg' }}
-          />
-          <Image
-            style = {styles.portfolioPic}
-            resizeMode = "contain"
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1613.jpg' }}
-          />
-          <Image
-            style = {styles.portfolioPic}
-            source = {{ uri: 'https://cut-finder.s3.amazonaws.com/IMG_1507.jpg' }}
-          />
-        </ScrollView>
-      </View>
-    );
+      );
+    }
   }
 }
 
