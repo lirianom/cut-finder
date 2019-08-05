@@ -11,19 +11,19 @@ import Spinner from 'react-native-loading-spinner-overlay';
 class home extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaded: false, search : '', results : '', barbers : [], Portfolio: [''] }
+    this.state = { isLoaded: false, search : '', results : '', barbers : [], portfolio: [''] }
   }
 
   async componentDidMount() {
     var barberId = this.props.navigation.getParam('id');
     var results = await services.data.getBarber(barberId);
-    var Portfolio = results.Portfolio;
+    var portfolio = results.Portfolio;
     var barbers = services.data.getAllBarbers();
     var isLoaded = true;
     this.setState(
         {
             isLoaded,
-            Portfolio,
+            portfolio,
             results,
             barbers
         }
@@ -66,7 +66,7 @@ class home extends Component {
           <Text style = {styles.barberDisplay}>{this.state.results.Location}</Text>
           <Text style = {styles.barberDisplay}>{this.state.results.Salon}</Text>
           <Text style = {styles.barberDisplay}>Portfolio:</Text>
-          <Portfolio uriArray = {this.state.Portfolio}/>
+          <Portfolio uriArray = {this.state.portfolio}/>
         </View>
       );
     }
