@@ -1,6 +1,6 @@
-#CUTFINDER
+# CUTFINDER
 ---
-###Initial Setup
+### Initial Setup
 ---
 CutFinder is a project written in react-native. In order to properly set up this project, please take look at [Facebook's tutorial](https://facebook.github.io/react-native/docs/getting-started) to install all proper dependencies. Once all proper dependencies are installed, the following commands must be ran (*$bash*) -
 
