@@ -1,9 +1,9 @@
 {
     "login" : {
-          "username" : "admin",
+          "username" : "Admin",
           "password" : "admin"
     },
-  
+
     "List" : {
         "People" : [
             {

@@ -12,8 +12,8 @@ var methods = {
     return false;
   },
 
-  getBarber : function() {
-    return axios.get('https://kysolqk4pc.execute-api.us-east-1.amazonaws.com/beta/findBarber/')
+  getBarber : function(id) {
+    return axios.post('https://kysolqk4pc.execute-api.us-east-1.amazonaws.com/beta/findBarber/', {id:id})
     .then(response => {
       barber = response.data;
       //this.setState({ barber });
